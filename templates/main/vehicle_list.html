@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+
+    <div class="vehicle-list-box">
+        <h3 class="text-center">Vehicle List</h3>
+        <div class="table-responsive" style="height:405px;">
+        <table class="table table-striped">
+            <thead>
+                <th class="fs-5">Vehicle Image</th>
+                <th class="fs-5"> Vehicle name </th>
+                <th class="fs-5"> Veiw Detail </th>
+            </thead>
+            <tbody>
+                {% for vehicle in vehicles %}
+                <tr>
+                    <td><img src="/media/{{vehicle.camera1}}" alt="" style="height:50px;width:100px;"></td>
+                    <td class="fw-bold">{{vehicle.name}}</td>
+                    <td><a href="/vehicle_detail/{{vehicle.id}}" class="btn btn-primary btn-md"> See Details</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+      </div>
+
+
+        {% if is_paginated %}
+        <div class="d-flex justify-content-center">
+        <nav>
+            <ul class="pagination">
+            {% if page_obj.has_previous %}
+              <li class="page-item">
+                    <a class="page-link" href="?page={{page_obj.previous_page_number}}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+              </li>
+            {% endif %}
+            
+      
+            {% for i in paginator.page_range%}
+                {% if page_obj.number == i %}
+                    <li class="page-item active"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+               {% else %}
+                <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+               {% endif %}
+            {% endfor %}
+            
+            {% if page_obj.has_next %}
+              <li class="page-item">
+                <a class="page-link" href="?page={{page_obj.next_page_number}}" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+              </li>
+            {% endif %}
+            </ul>
+          </nav>
+        {% endif %}
+    </div>
+</div>
+    
+
+</div>
+    
+    
+{% endblock %}

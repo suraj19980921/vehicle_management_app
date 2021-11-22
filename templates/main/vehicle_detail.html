@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container-fluid">
+    
+  <div class="vehicle-details-box">
+      {% for vehicle in vehicle_details %}
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="adjust-center">
+                    <img src="/media/profile_pic.jpg" class="rounded-circle" alt="" style="height:50px; width:50px; background-color:black;">
+                    <button class="btn btn-md btn-dark mx-4" id="camera1-btn" style="height:45px; width:220px;">Camera 1</button>
+                    <button class="btn btn-md btn-dark" id="camera2-btn" style="height:45px; width:200px;">Camera 2</button>
+                </div>   
+            </div>
+            <div class="col-sm-4">
+                <div class="d-flex justify-content-center">
+                    <button class="switch mt-1" id="off-switch">OFF</button>
+                    <button class="switch mt-1" id="on-switch" style="margin-right:1%;">ON</button>
+                </div>    
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-sm-8">
+                
+                    <img src="/media/{{vehicle.camera1}}" alt="{{vehicle.camera2}}"  id="camera1-image" class="camera-image"> 
+                    <img src="/media/{{vehicle.camera2}}" alt="{{vehicle.camera2}}"  id="camera2-image" class="camera-image" style="display: none;"> 
+              
+            </div>
+            <div class="col-sm-4">
+                <div class="feature-box">
+                    <h5>Speed </h5>
+                    <div class="text-center fs-3 text-white">{{vehicle.speed}} km/hr</div>
+                </div>
+                <div class="feature-box">
+                    <h5>Average Speed </h5>
+                    <div class="text-center fs-3 text-white">{{vehicle.average_speed}} km/hr</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="feature-box">
+                    <h5>Engine Status  </h5>
+                    <div class="text-center fs-3 text-white">{{vehicle.engine_status}}</div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="feature-box">
+                    <h5> Fuel Level </h5>
+                    <div class="text-center fs-3 text-white">{{vehicle.fuel_level}} litre</div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="feature-box">
+                    <h5> Temperature </h5>
+                    <div class="text-center fs-3 text-white">{{vehicle.temperature}} <sup>o</sup>C</div>
+                </div>
+            </div>
+        </div>
+        </div>
+    {% endfor %}
+       
+ </div>    
+
+{% endblock %}
